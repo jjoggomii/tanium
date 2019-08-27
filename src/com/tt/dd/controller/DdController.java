@@ -14,6 +14,5 @@ public class DdController {
 	@Autowired
 	private DdServiceDAO ddServiceDAO;
 	
-	@RequestMapping("/selectDd")
-	public ModelAndView selectDd(@RequestParam)
+
 }

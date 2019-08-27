@@ -15,6 +15,7 @@ import com.tt.vr.vo.VrVO;
 public class VrController {
 	
 	private static final String CONTEXT_PATH = "vr";
+	private static final String CONTEXT_PATH2 = "vr2";
 	
 	@Autowired
 	private VrServiceDAO vrService;

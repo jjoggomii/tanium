@@ -1,4 +1,4 @@
-package com.tt.vr.controller;
+﻿package com.tt.vr.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import com.tt.vr.vo.VrVO;
 public class VrController {
 	
 	private static final String CONTEXT_PATH = "vr";
+	private static final String CONTEXT_PATH2 = "YangYangTest";
 	
 	@Autowired
 	private VrServiceDAO vrService;

@@ -10,7 +10,7 @@ import com.tt.dd.service.DdServiceDAO;
 @RequestMapping(value="/ddController")
 public class DdController {
 	private static final String CONTEXT_PATH="dd";
-	private static final String CONTEXT_PATH1="dd1";
+
 	
 	@Autowired
 	private DdServiceDAO ddServiceDAO;

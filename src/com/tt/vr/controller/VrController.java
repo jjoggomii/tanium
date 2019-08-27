@@ -16,9 +16,6 @@ public class VrController {
 	
 	private static final String CONTEXT_PATH = "vr";
 
-	private static final String CONTEXT_PATH2 = "Yang1";
-	private static final String CONTEXT_PATH2 = "Yang22";
-	private static final String CONTEXT_PATH3 = "33";
 	
 	@Autowired
 	private VrServiceDAO vrService;

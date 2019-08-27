@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- DATA Connection -->
+
+	<!-- DATA Source -->
+	<!-- Serves - context.xml에 있는 DB연결정보를 가져온다. -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/Oracle11g" />
+		<!-- java:comp/env/ = JavaNamingDirectoryInterface -->
+	</bean>
+	<!-- Mybatis Setting -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:mybatis/query/*.xml" />
+	</bean>
+
+	<!-- a platformTransactionManager is still required -->
+	<!-- DB연결을 해주고 쿼리가 끝나면 연결을 끊어 준다. 트랜잭션 관리 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 위에 있는 dataSource 가져오기 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- mapper 찾아주는 것 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage">
+			<value>com.**.mapper</value>
+		</property>
+
+	</bean>
+</beans>

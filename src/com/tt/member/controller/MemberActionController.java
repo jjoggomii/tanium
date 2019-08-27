@@ -18,7 +18,7 @@ import com.tt.member.vo.MemberVO;
 public class MemberActionController {
 
 	
-	@RequestMapping(value = "/start.do",method = RequestMethod.POST)
+	@RequestMapping(value = "/start.tan",method = RequestMethod.POST)
 	public ModelAndView memberMenu(@RequestParam ("management")String management){
 		System.out.println("메뉴 컨트롤러 시작 >>> : ");
 		ModelAndView mav = new ModelAndView();

@@ -15,9 +15,12 @@ import com.tt.vr.vo.VrVO;
 public class VrController {
 	
 	private static final String CONTEXT_PATH = "vr";
+	private static final String CONTEXT_PATH1 = "vr1";
 	
 	@Autowired
 	private VrServiceDAO vrService;
+	
+
 	
 	@RequestMapping("/insertVr")
 	public ModelAndView vrInsert(@ModelAttribute VrVO vrvo){

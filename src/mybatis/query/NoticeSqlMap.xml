@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tt.notice.mapper.NoticeMapperDAO">
+	<resultMap type="com.tt.notice.vo.NoticeVO" id="ntvo">
+		<result property="ntno" column="NTNO"/>
+		<result property="mbno" column="MBNO"/>
+		<result property="gname" column="GNAME"/>
+		<result property="ntwriter" column="MBNAME"/>
+		<result property="ntsubject" column="NTSUBJECT"/>
+		<result property="ntcontent" column="NTCONTENT"/>
+		<result property="ntviews" column="NTVIEWS"/>
+		<result property="nttop" column="NTTOP"/>
+		<result property="ntmakedate" column="NTMAKEDATE"/>
+		<result property="ntinsertdate" column="NTINSERTDATE"/>
+		<result property="ntupdatedate" column="NTUPDATEDATE"/>
+		<result property="ntdeleteyn" column="NTDELETEYN"/>
+	</resultMap>
+	
+	<select id="listNotice" parameterType="com.tt.notice.vo.NoticeVO" resultMap="ntvo">
+		<!--  listNotice -->
+			SELECT		 A.NTNO
+							,A.MBNO
+							,A.GNAME
+							,B.MBNAME
+							,A.NTSUBJECT
+							,A.NTCONTENT
+							,A.NTVIEWS
+							,A.NTTOP
+							,A.NTMAKEDATE
+							,A.NTINSERTDATE
+							,A.NTUPDATEDATE
+							,A.NTUPDATEDATE
+							,A.NTDELETEYN
+			FROM			 NTBOARD A
+							,MBJOIN B;
+			WHERE		1=1
+			AND			A.MBNO = B.MBNO;						
+	</select>
+</mapper>

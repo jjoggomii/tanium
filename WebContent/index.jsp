@@ -11,9 +11,7 @@
 	</head>
 	<body>
 		<div>
-			<a href="vr/insertVr.tan">휴가신청서</a>
-			<!-- 컨트롤러에 있는 어노테이션 value가 아래와 같은 것으로 찾아간다. -->
-			<!-- dispatchersevlet이 컨트롤러를 검색 -->
+			<a href="nt/listNotice.tan">공지사항</a>
 		</div>
 		
 	</body>

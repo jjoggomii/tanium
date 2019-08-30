@@ -17,7 +17,7 @@ public class NoticeMapperImpl extends SqlSessionDaoSupport implements NoticeMapp
 	@Override
 	public int insertNotice(NoticeVO ntvo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return getSqlSession().insert("insertNotice");
 	}
 
 }

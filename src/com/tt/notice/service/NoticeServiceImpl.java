@@ -36,7 +36,7 @@ public class NoticeServiceImpl  implements NoticeServiceDAO {
 	@Override
 	public int insertNotice(NoticeVO ntvo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return ntMapper.insertNotice(ntvo);
 	}
 
 }

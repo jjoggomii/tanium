@@ -4,7 +4,7 @@ public class NoticeVO {
 	
 	private String ntno;
 	private String mbno;
-	private String gname;
+	private String gname; //직위명
 	private String ntwriter; //작성자 
 	private String ntsubject;
 	private String ntcontent;

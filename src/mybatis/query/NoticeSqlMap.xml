@@ -27,14 +27,44 @@
 							,A.NTCONTENT
 							,A.NTVIEWS
 							,A.NTTOP
-							,A.NTMAKEDATE
-							,A.NTINSERTDATE
-							,A.NTUPDATEDATE
-							,A.NTUPDATEDATE
+							,TO_CHAR(A.NTMAKEDATE, 'YYYY-MM-DD') AS NTMAKEDATE
+							,TO_CHAR(A.NTUPDATEDATE, 'YYYY-MM-DD') AS NTUPDATEDATE
 							,A.NTDELETEYN
 			FROM			 NTBOARD A
-							,MBJOIN B;
+							,MBJOIN B
 			WHERE		1=1
-			AND			A.MBNO = B.MBNO;						
-	</select>
+			AND			A.MBNO = B.MBNO
+			AND			A.NTDELETEYN = 'Y'			
+			ORDER BY 	1 DESC
+		</select>
+			
+	<insert id="insertNotice" parameterType="com.tt.notice.vo.NoticeVO">
+		<!-- insertNotice  -->       
+			INSERT INTO NTBOARD
+											( 	 NTNO
+												,MBNO
+												,GNAME
+												,NTSUBJECT
+												,NTCONTENT
+												,NTVIEWS
+												,NTTOP
+												,NTMAKEDATE
+												,NTINSERTDATE
+												,NTUPDATEDATE
+												,NTDELETEYN
+											)
+								VALUES	(	 #{ntno} 
+												,#{mbno}
+												,#{gname}
+												,#{ntsubject}
+												,#{ntcontent}
+												,#{ntviews}
+												,'N'
+												,SYSDATE
+												,SYSDATE
+												,SYSDATE
+												,'Y'											
+											)
+											
+	</insert>
 </mapper>

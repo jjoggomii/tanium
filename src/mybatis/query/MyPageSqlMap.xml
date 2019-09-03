@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.tt.mp.mapper.MpMapperDAO">
+		<resultMap type="com.tt.member.vo.MemberVO" id="memberVO">
+			<result property="mbno" column="MBNO" />
+			<result property="mbname" column="MBNAME" />
+			<result property="mbpw" column="MBPW" />
+			<result property="mbgender" column="MBGENDER" />
+			<result property="mbtel" column="MBTEL" />
+			<result property="mbbirth" column="MBBIRTH" />
+			<result property="mbemail" column="MBEMAIL" />
+			<result property="mbaddr" column="MBADDR" />
+			<result property="mbpostcode" column="MBPOSTCODE" />
+			<result property="mbhobby" column="MBHOBBY" />
+			<result property="mbmarry" column="MBMARRY" />
+			<result property="mbjoindate" column="MBJOINDATE" />
+			<result property="mbresingation" column="MBRESINGATION" />
+			<result property="dname" column="DNAME" />
+			<result property="gname" column="GNAME" />
+			<result property="pname" column="PNAME" />
+			<result property="rname" column="RNAME" />
+			<result property="tname" column="TNAME" />
+			<result property="mbpicture" column="MBPICTURE" />
+			<result property="mbstamp" column="MBSTAMP" />
+			<result property="mbinsertdate" column="MBINSERTDATE" />
+			<result property="mbupdatedate" column="MBUPDATEDATE" />
+			<result property="mbdeleteyn" column="MBDELETEYN" />
+		</resultMap>
+		
+		<select id="selectMp" parameterType="com.tt.member.vo.MemberVO" resultMap="memberVO">
+		<!-- 상세조회 -->
+		
+			SELECT	 A.MBNO
+						,A.MBNAME
+						,A.MBGENDER
+						,A.MBBIRTH
+						,A.MBTEL
+						,A.DNAME
+						,A.	TNAME
+						,A.GNAME
+						,A.PNAME
+						,A.MBJOINDATE
+						,A.MBEMAIL
+						,A.MBADDR
+						,A.MBHOBBY
+						,A.MBMARRY
+			FROM		MBJOIN A
+			WHERE	1=1
+			AND		A.MBNO=#{mbno}
+		</select>
+		
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

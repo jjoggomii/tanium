@@ -4,7 +4,7 @@
 <html>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>스프링 MVC 데이터베이스 연동</title>
+		<title>TAN TAN OFFICE</title>
 			<style type="text/css">
 				a{text-decoration:none;}
 			</style>
@@ -12,6 +12,7 @@
 	<body>
 		<div>
 			<a href="nt/listNotice.tan">공지사항</a>
+			<a href="mp/selectMp.tan">My Page</a>
 		</div>
 		
 	</body>

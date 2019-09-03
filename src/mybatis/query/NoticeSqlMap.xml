@@ -17,9 +17,11 @@
 		<result property="ntdeleteyn" column="NTDELETEYN"/>
 	</resultMap>
 	
-	<select id="listNotice" parameterType="com.tt.notice.vo.NoticeVO" resultMap="ntvo">
+	<!-- parameterType="map" :  내가 지금 여기서 쓸 파라미터의 타입 -->
+	<!--  resultMap="ntvo" : 조회해서 나온 결과 값을 ntvo에 담아 -->
+	<select id="listNotice" parameterType="map" resultMap="ntvo">
 		<!--  listNotice -->
-			SELECT		 A.NTNO
+			<!-- SELECT		 A.NTNO
 							,A.MBNO
 							,A.GNAME
 							,B.MBNAME
@@ -34,13 +36,72 @@
 							,MBJOIN B
 			WHERE		1=1
 			AND			A.MBNO = B.MBNO
-			AND			A.NTDELETEYN = 'Y'			
-			ORDER BY 	1 DESC
+			AND			A.NTDELETEYN = 'Y'	
+			AND			ROWNUM >=1 AND 15>=ROWNUM		
+			ORDER BY 	1 DESC -->
+			SELECT      D.NTNO
+	                       ,D.MBNO
+	                       ,D.GNAME
+	                       ,D.MBNAME
+	                       ,D.NTSUBJECT
+	                       ,D.NTCONTENT
+	                       ,D.NTVIEWS
+	                       ,D.NTTOP
+	                       ,D.NTMAKEDATE
+	                       ,D.NTINSERTDATE
+	                       ,D.NTUPDATEDATE
+	                       ,D.NTDELETEYN
+			FROM    (SELECT  ROWNUM AS RNUM 
+			                		,C.*
+				         FROM   (SELECT 		 A.NTNO
+							                        ,A.MBNO
+							                        ,A.GNAME
+							                        ,B.MBNAME
+							                        ,A.NTSUBJECT
+							                        ,A.NTCONTENT
+							                        ,A.NTVIEWS
+							                        ,A.NTTOP
+							                        ,TO_CHAR(A.NTMAKEDATE,'YYYY-MM-DD') AS NTMAKEDATE
+							                        ,A.NTINSERTDATE
+							                        ,A.NTUPDATEDATE
+							                        ,A.NTDELETEYN
+						             	FROM		 NTBOARD A
+						                        	,MBJOIN B
+						                WHERE		1=1
+						                AND			A.MBNO = B.MBNO
+						                AND			A.NTDELETEYN = 'Y'
+						                ORDER BY A.NTNO DESC) C 
+			          	WHERE #{endNum}>=ROWNUM ) D 
+			WHERE D.RNUM >=#{startNum}
 		</select>
-			
+		
+		<select id="selectNotice" parameterType="com.tt.notice.vo.NoticeVO" resultMap="ntvo">
+		<!-- 상세조회 -->
+		
+			SELECT	 A.NTNO
+						,A.NTSUBJECT
+						,B.MBNAME
+						,A.GNAME
+						,A.NTMAKEDATE
+						,A.NTCONTENT	
+			FROM		 NTBOARD A
+						,MBJOIN B
+			WHERE	1=1
+			AND		A.MBNO = B.MBNO
+			AND		A.NTNO = #{ntno}
+		</select>
+		
+	<select id ="listCount" resultType="int">
+		<!-- 게시글 총 갯수 카운트 -->
+			SELECT  COUNT(NTNO) 
+			FROM 	NTBOARD
+			WHERE 	1=1 
+			AND 		NTDELETEYN='Y'
+	</select>
+	<!--  얘는 insert하고 끝! 가지고와서 또 뭘 뿌려줄 일이 없어서 resultMap에 담을 필요가 없다. -->
 	<insert id="insertNotice" parameterType="com.tt.notice.vo.NoticeVO">
 		<!-- insertNotice  -->       
-			INSERT INTO NTBOARD
+			<!-- INSERT INTO NTBOARD
 											( 	 NTNO
 												,MBNO
 												,GNAME
@@ -55,7 +116,7 @@
 											)
 								VALUES	(	 #{ntno} 
 												,#{mbno}
-												,#{gname}
+												,#{gname}  
 												,#{ntsubject}
 												,#{ntcontent}
 												,#{ntviews}
@@ -64,7 +125,31 @@
 												,SYSDATE
 												,SYSDATE
 												,'Y'											
-											)
-											
+											) -->
+			INSERT INTO NTBOARD(
+												 NTNO
+												,MBNO
+											 	,GNAME
+												,NTSUBJECT
+												,NTCONTENT
+												,NTVIEWS
+											  	,NTTOP
+												,NTMAKEDATE
+												,NTINSERTDATE
+												,NTUPDATEDATE
+												,NTDELETEYN)
+								SELECT
+											 #{ntno} 
+											,#{mbno}
+											,(SELECT GNAME FROM MBJOIN WHERE MBNO = #{mbno}) 
+											,#{ntsubject}
+											,#{ntcontent}
+											,#{ntviews}
+											,'N'
+											,SYSDATE
+											,SYSDATE
+											,SYSDATE
+											,'Y'					
+								FROM 	DUAL
 	</insert>
 </mapper>

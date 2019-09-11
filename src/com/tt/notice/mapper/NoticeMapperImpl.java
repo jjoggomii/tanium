@@ -30,5 +30,22 @@ public class NoticeMapperImpl extends SqlSessionDaoSupport implements NoticeMapp
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("listCount");
 	}
-
+	
+	@Override
+	public int insertFile(Map<String, Object> fileList) {
+		// TODO Auto-generated method stub
+		return getSqlSession().insert("insertFile");
+		
+	}
+	@Override
+	public List<NoticeVO> selectFile(String ntno) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("selectFile");
+	}
+	
+	@Override
+	public NoticeVO getFile(String atno) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("getFile");
+	}
 }

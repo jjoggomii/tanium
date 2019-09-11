@@ -21,5 +21,10 @@ public class MpServiceImpl implements MpServiceDAO {
 		// TODO Auto-generated method stub
 		return mpMapper.selectMp(membervo);
 	}
+	@Override
+	public int updateMp(MemberVO membervo) {
+		// TODO Auto-generated method stub
+		return mpMapper.updateMp(membervo);
+	}
 
 }

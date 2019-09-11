@@ -7,5 +7,5 @@ import com.tt.member.vo.MemberVO;
 public interface MpServiceDAO {
 
 	public List<MemberVO> selectMp(MemberVO membervo);
-	
+	public int updateMp(MemberVO membervo);
 }

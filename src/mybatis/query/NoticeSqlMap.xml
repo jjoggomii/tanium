@@ -15,6 +15,10 @@
 		<result property="ntinsertdate" column="NTINSERTDATE"/>
 		<result property="ntupdatedate" column="NTUPDATEDATE"/>
 		<result property="ntdeleteyn" column="NTDELETEYN"/>
+		<result property="atno" column="ATNO"/>
+		<result property="atfilename" column="ATFILENAME"/>
+		<result property="atfilepath" column="ATFILEPATH"/>
+		<result property="atdeleteyn" column="ATDELETEYN"/>
 	</resultMap>
 	
 	<!-- parameterType="map" :  내가 지금 여기서 쓸 파라미터의 타입 -->
@@ -126,6 +130,7 @@
 												,SYSDATE
 												,'Y'											
 											) -->
+
 			INSERT INTO NTBOARD(
 												 NTNO
 												,MBNO
@@ -152,4 +157,47 @@
 											,'Y'					
 								FROM 	DUAL
 	</insert>
+	
+	<insert id="insertFile" parameterType="java.util.Map">
+		<!-- 파일 인써트  -->
+		INSERT INTO ATTABLE(
+										 ATNO
+                  						,NTNO 
+					                    ,ATFILENAME
+					                    ,ATFILEPATH 
+					                    ,ATMAKEDATE
+					                    ,ATINSERTDATE
+					                    ,ATUPDATEDATE 
+					                    ,ATDELETEYN)
+				             VALUES(				             				
+       								   		#{atno}
+       								   		 ,#{ntno}
+       								   		 , #{filename}
+       								   		 , #{filepath}
+       								   		 ,SYSDATE
+       								   		 ,SYSDATE
+       								   		 ,SYSDATE
+       								   		 ,'Y')
+	</insert>
+	
+	<select id="selectFile" parameterType="com.tt.notice.vo.NoticeVO" resultMap="ntvo">
+		 SELECT 	 ATNO
+		 				,ATFILENAME
+		 				,ATFILEPATH
+	     FROM  	 	ATTABLE
+	     WHERE  	1=1
+	     AND    		NTNO = #{ntno}
+	     AND			ATDELETEYN = 'Y'
+	</select>
+	
+	<select id="getFile" parameterType="com.tt.notice.vo.NoticeVO" resultMap="ntvo">
+		<!-- 파일 다운로드~ -->
+		 SELECT 	 ATNO
+		 				,ATFILENAME
+		 				,ATFILEPATH
+	     FROM  	 	ATTABLE
+	     WHERE  	1=1
+	     AND    		ATNO = #{atno}
+	     AND			ATDELETEYN = 'Y'
+	</select>
 </mapper>

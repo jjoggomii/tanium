@@ -1,5 +1,6 @@
 package com.tt.notice.vo;
 
+
 public class NoticeVO {
 	
 	private String ntno;
@@ -14,6 +15,10 @@ public class NoticeVO {
 	private String ntinsertdate;
 	private String ntupdatedate;
 	private String ntdeleteyn;
+	private String atno;
+	private String atfilename;
+	private String atfilepath;
+	private String atdeleteyn;
 	
 	public NoticeVO(){
 		
@@ -22,7 +27,9 @@ public class NoticeVO {
 	public NoticeVO(String ntno, String mbno, String gname, String ntwriter,
 			String ntsubject, String ntcontent, int ntviews, String nttop,
 			String ntmakedate, String ntinsertdate, String ntupdatedate,
-			String ntdeleteyn) {
+			String ntdeleteyn, String atno, String atfilename,
+			String atfilepath, String atdeleteyn) {
+
 		this.ntno = ntno;
 		this.mbno = mbno;
 		this.gname = gname;
@@ -35,7 +42,15 @@ public class NoticeVO {
 		this.ntinsertdate = ntinsertdate;
 		this.ntupdatedate = ntupdatedate;
 		this.ntdeleteyn = ntdeleteyn;
+		this.atno = atno;
+		this.atfilename = atfilename;
+		this.atfilepath = atfilepath;
+		this.atdeleteyn = atdeleteyn;
 	}
+
+
+
+
 
 	public String getNtno() {
 		return ntno;
@@ -131,8 +146,41 @@ public class NoticeVO {
 
 	public void setNtdeleteyn(String ntdeleteyn) {
 		this.ntdeleteyn = ntdeleteyn;
-	};
-	
+	}
+
+
+	public String getAtno() {
+		return atno;
+	}
+
+	public void setAtno(String atno) {
+		this.atno = atno;
+	}
+
+	public String getAtfilename() {
+		return atfilename;
+	}
+
+	public void setAtfilename(String atfilename) {
+		this.atfilename = atfilename;
+	}
+
+	public String getAtfilepath() {
+		return atfilepath;
+	}
+
+	public void setAtfilepath(String atfilepath) {
+		this.atfilepath = atfilepath;
+	}
+
+	public String getAtdeleteyn() {
+		return atdeleteyn;
+	}
+
+	public void setAtdeleteyn(String atdeleteyn) {
+		this.atdeleteyn = atdeleteyn;
+	}
+
 	
 
 }

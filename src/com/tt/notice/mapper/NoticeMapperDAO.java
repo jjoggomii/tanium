@@ -11,4 +11,7 @@ public interface NoticeMapperDAO {
 	public List<NoticeVO>	selectNotice(String ntno);
 	public int insertNotice (NoticeVO ntvo);
 	public int listCount();
+	public int insertFile(Map<String, Object> fileList);
+	public List<NoticeVO> selectFile(String ntno);
+	public NoticeVO getFile(String atno);
 }

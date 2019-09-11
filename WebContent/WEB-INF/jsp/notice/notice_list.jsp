@@ -12,6 +12,10 @@
 	<script type="text/javascript"> 	
 	
 		$(document).ready(function() {
+			/* $('.abcdefg').empty() */
+			$('#ttleftbar').append( '<li class="nav-item"><a class="nav-link listyle" href="/nt/listNotice.tan" >● 공지사항 게시판</a></li>');
+			
+			
 			$("#addNt").click(function() {
 				alert("insertPage() >>> ");
 				$("#noticeForm").attr("action", "goInsertPage.tan");
@@ -21,7 +25,8 @@
 			$(".goDetail").click(function(){
 				
 				alert("goDetail >>> ");
-				var ntno =  $(this).parents("tr").attr("data-num");      
+				var ntno =  $(this).parents("tr").attr("data-num");  
+				alert("ntno >>> : " + ntno);
 				$("#listntno").val(ntno);     
 				$("#noticeForm").attr({      
 												 "method":"post"      
@@ -52,14 +57,14 @@
 <div class="container-fluid" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
    		<jsp:include page="/WEB-INF/jsp/common/left.jsp" flush="false"/>
-      	<div class="col main pt-5 mt-3">
-			<form id="noticeForm" name="noticeForm" method="post" > 
-				<div class="col-lg-12" style="margin-top: 2%; ">
-					<h3>&nbsp;&nbsp;공지사항</h3>
+      	<div class="col main pt-5 mt-3" style="margin-left: 266px;">
+			<form id="noticeForm" name="noticeForm" method="post" style="width: 100%;" > 
+				<div class="col-lg-12" style="margin-top: 5%;margin-left: 1.5%;">
+					<h1>&nbsp;&nbsp;공지사항</h1>
 					<input type="hidden" name = "pResult" value="1">
-			              <div class="col-lg-9 col-md-8">
-			                  <div class="table-responsive">
-							<table class="table table-striped">
+			              <div class="col-lg-9 col-md-8" style="margin-top: 3%;">
+			                  <div class="table-responsive" style=" width: 130%;">
+							<table class="table table-striped" style=" text-align:center;">
 								<thead class="thead-inverse">
 									<tr>
 										<td width="73">번호</td>
@@ -93,13 +98,18 @@
 						</tbody>
 									
 						<tfoot>
+						
 							 <tr>
 								 	<td colspan="4" align="center">
-								 	<c:forEach  var="i" begin="1" end="${paging}">
-					            	<input type = "button" class="pbutton" value="${i}">
+					            	<c:if test="${sss ne 's'}"><button class="pbutton btn btn-outline-secondary" value="${sPage -1}">이전 </button></c:if>
+								 	<c:forEach  var="i" begin="${sPage}" end="${ePage}">
+					            	<input type = "button" class="pbutton btn btn-outline-secondary" value="${i}">
 					            	</c:forEach>
+					            	<c:if test="${sss ne 'e'}"><button class="pbutton btn btn-outline-secondary" value="${ePage +1}"> 다음 </button></c:if>
 					            	</td>
+					            	<c:if test="${sessionScope.logininfo.tname =='인사관리'}">
 								<td><input type=button class="btn btn-primary"  value="글쓰기" id="addNt"></td>
+									</c:if>
 							</tr>
 						</tfoot>
 					</table>
@@ -113,15 +123,6 @@
       </div>
          <!--/main col-->
   </div>
-
-
-
-    <!--scripts loaded here-->
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
-    <script src="js/scripts.js"></script>
   </body>
 </html>

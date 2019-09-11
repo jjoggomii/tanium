@@ -33,22 +33,35 @@
 			SELECT	 A.MBNO
 						,A.MBNAME
 						,A.MBGENDER
-						,A.MBBIRTH
+						,TO_CHAR(A.MBBIRTH,'YYYY-MM-DD') AS MBBIRTH
 						,A.MBTEL
 						,A.DNAME
 						,A.	TNAME
 						,A.GNAME
 						,A.PNAME
-						,A.MBJOINDATE
+						,TO_CHAR(A.MBJOINDATE,'YYYY-MM-DD') AS MBJOINDATE
 						,A.MBEMAIL
+						,A.MBPOSTCODE
 						,A.MBADDR
 						,A.MBHOBBY
 						,A.MBMARRY
+						,A.MBPICTURE
 			FROM		MBJOIN A
 			WHERE	1=1
 			AND		A.MBNO=#{mbno}
 		</select>
 		
+		<update id="updateMp" parameterType = "com.tt.member.vo.MemberVO">
+		<!-- 내정보 수정-->
+			UPDATE	 MBJOIN
+			SET	 	 MBNAME = #{mbname}
+						,MBTEL = #{mbtel}
+						,MBPOSTCODE = #{mbpostcode}
+						,MBADDR = #{mbaddr}
+						,MBHOBBY = #{mbhobby}
+						,MBMARRY = #{mbmarry}
+			WHERE	MBNO = #{mbno}
+	</update>
 </mapper>
 
 

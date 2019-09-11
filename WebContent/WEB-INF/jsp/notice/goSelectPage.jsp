@@ -14,7 +14,7 @@
 		</script>
 </head>
 <body>
-${listntno}
+
 	<form id="ntnoForm" name="ntnoForm" method="post" > 
 		<input type="hidden" name="listntno" id="listntno" value="${listntno}">
 	</form>

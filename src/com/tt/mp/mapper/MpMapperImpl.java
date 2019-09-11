@@ -13,5 +13,10 @@ public class MpMapperImpl extends SqlSessionDaoSupport implements MpMapperDAO {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("selectMp");
 	}
-
+	
+	@Override
+	public int updateMp(MemberVO membervo) {
+		// TODO Auto-generated method stub
+		return getSqlSession().update("updateMp");
+	}
 }

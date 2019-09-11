@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tt.comment.mapper.CommentMapperDAO">
+	<resultMap type="com.tt.comment.vo.CommentVO" id="cvo">
+		<result property="bcno" column="BCNO"/>
+		<result property="mbno" column="MBNO"/>
+		<result property="mbname" column="MBNAME"/>
+		<result property="gname" column="GNAME"/>
+		<result property="bccontent" column="BCCONTENT"/>
+		<result property="bcmakedate" column="BCMAKEDATE"/>
+		<result property="bcinsertdate" column="BCINSERTDATE"/>
+		<result property="bcupdatedate" column="BCUPDATEDATE"/>
+		<result property="bcdeleteyn" column="BCDELETEYN"/>
+		<result property="ntno" column="NTNO"/>
+		<result property="deno" column="DENO"/>
+		
+	</resultMap>
+	
+	
+	
+	<select id="listComment" parameterType="com.tt.comment.vo.CommentVO" resultMap="cvo">
+		SELECT 				
+						  A.BCNO      
+						 ,A.NTNO         
+						 ,B.MBNO        		
+						 ,B.MBNAME         		
+						 ,B.GNAME		        
+						 ,A.BCMAKEDATE	   
+						 ,A.BCCONTENT	   
+						 ,A.BCDELETEYN	    
+		FROM			 BCTABLE A	
+						,MBJOIN B
+		WHERE 		A.MBNO = B.MBNO 
+		AND			A.BCDELETEYN='Y'
+		AND			A.NTNO= #{ntno}
+		ORDER BY 1
+		
+	</select>
+	
+	<insert id="insertComment" parameterType="com.tt.comment.vo.CommentVO">
+		INSERT INTO BCTABLE
+										(
+											 BCNO
+											,MBNO
+											,BCCONTENT
+											,BCMAKEDATE
+											,BCINSERTDATE
+											,BCUPDATEDATE
+											,BCDELETEYN
+											,NTNO
+										)
+					       VALUES (
+						                #{bcno}
+						               ,#{mbno}
+						               ,#{bccontent}
+						               ,#{bcmakedate}
+						               ,SYSDATE
+						               ,SYSDATE
+						               ,'Y'
+						               ,#{ntno}
+					       			)
+	</insert>
+</mapper>
+
